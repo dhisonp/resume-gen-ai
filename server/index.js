@@ -89,9 +89,9 @@ app.post("/resume/create", upload.single("headshotImage"), async (req, res) => {
     // Chat-GPT Prompts! The fun part!
     // deets are some reusable prompt details for the following rather specific prompts to avoid copy pasting.
     const deets = `I need a professional resume. My details are as follows-- Name: ${fullName}, Role: ${currentPosition} (${currentLength} years).`;
-    const prompt_desc = `${deets} I utilize this technology to assist me with the job: ${currentTechnologies}. Please write me 80 words of summary (in first person writing).`;
+    const prompt_desc = `${deets} I utilize this technology to assist me with the job: ${currentTechnologies}. Please write me 85 words of summary (in first person writing).`;
     const prompt_points = `${deets} I excel in this technology: ${currentTechnologies}. Please write me 8 bullet points for the resume on what I am good at.`;
-    const prompt_experience = `${deets} I have professionaly worked in ${workArray.length} companies. ${strWorkArray()} \n Please write me 40 words for each company separated in bullet points of my succession in the company (in first person writing).`;
+    const prompt_experience = `${deets} I have professionaly worked in ${workArray.length} companies. ${strWorkArray()} \n Please write me 45 words for each company separated in bullet points of my succession in the company (in first person writing).`;
 
     // API Call -> Generate GPT-3 Results!
     const desc = await GPTFunction(prompt_desc);
