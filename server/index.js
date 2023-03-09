@@ -57,7 +57,7 @@ app.get("/api", (req, res) => {
 });
 
 app.post("/resume/create", upload.single("headshotImage"), async (req, res) => {
-    console.log(req.body); // For Postman.
+    // console.log(req.body);
     const {
         fullName,
         currentPosition,
@@ -82,7 +82,7 @@ app.post("/resume/create", upload.single("headshotImage"), async (req, res) => {
         for (let i = 0; i < workArray.length; i++) {
             string += `${workArray[i].name} as a ${workArray[i].position}. `;
         }
-        console.log(`strWorkArray -> ${string}`)
+        // console.log(`strWorkArray -> ${string}`)
         return string;
     };
 

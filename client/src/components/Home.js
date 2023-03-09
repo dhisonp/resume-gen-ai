@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import axios from "axios";
 import Loading from "./Loading";
+import { useNavigate } from "react-router-dom";
 
-const Home = () => {
+const Home = ({ setResult }) => {
     // Form Data
     const [fullName, setFullName] = useState("");
     const [currentPosition, setCurrentPosition] = useState("");
@@ -13,17 +15,29 @@ const Home = () => {
     ]);
     // Utility
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
     // Handlers
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        console.log({
-            fullName,
-            currentPosition,
-            currentLength,
-            currentTechnologies,
-            headshot,
-        });
+        const data = new FormData();
+        data.append("headshotImage", headshot, headshot.name);
+        data.append("fullName", fullName);
+        data.append("currentPosition", currentPosition);
+        data.append("currentLength", currentLength);
+        data.append("currentTechnologies", currentTechnologies);
+        data.append("workHistory", JSON.stringify(companyInfo));
+        axios
+            .post("http://localhost:4000/resume/create", data, {})
+            .then((res) => {
+                if (res.data.message) {
+                    // console.log(res.data.data);
+                    console.log(res);
+                    setResult(res.data.data);
+                    navigate("/resume");
+                }
+            })
+            .catch((err) => console.error(err));
         setLoading(true);
     };
 
