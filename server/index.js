@@ -34,7 +34,7 @@ const openai = new OpenAIApi(configuration);
 const GPTFunction = async (text) => {
     const response = await openai.createCompletion({
         model: "text-davinci-003",
-        prompt: text,
+        prompt: text, 
         temperature: 0.6,
         max_tokens: 250,
         top_p: 1,
@@ -50,11 +50,11 @@ const upload = multer({
     limits: { fileSize: 1024 * 1024 * 5 },
 });
 
-app.get("/api", (req, res) => {
+app.get("/hello", (req, res) => {
     res.json({
         message: "Hello World!",
     });
-});
+}); 
 
 app.post("/resume/create", upload.single("headshotImage"), async (req, res) => {
     // console.log(req.body);
